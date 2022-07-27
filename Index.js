@@ -179,7 +179,29 @@ console.log(req.query);
           });
     
       
-      
+          app.put('/movies/:id', async function (req, res) {
+   
+   
+   
+            const{ id }=req.params;
+                console.log(req.params,id);
+               const data=req.body;
+
+
+               const result= await clint
+               .db("b36")
+               .collection("movies")
+               .updateOne({id:id},{$set:data});
+              
+              
+               result.modifiedCount >0
+          
+               ? res.send({msg:"movie sucessfully updated"})
+               :res.status(400).send({msg:"movie not found"});
+    
+        
+              
+              });
       
       
       
